@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elever Vision — Consultoria em Dados</title>
+    <meta name="description" content="Do alto da visão, transformamos dados em valor estratégico. Consultoria especializada em engenharia de dados e analytics.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #1a1a2e;
+            background: #fff;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0a1628 0%, #1a3a5c 50%, #2a5a8c 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+        }
+
+        header h1 span {
+            font-weight: 600;
+        }
+
+        header p.tagline {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 500px;
+            margin-bottom: 3rem;
+        }
+
+        header a.cta {
+            border: 1px solid rgba(255,255,255,0.5);
+            color: #fff;
+            padding: 0.8rem 2.5rem;
+            text-decoration: none;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+            transition: all 0.3s;
+        }
+
+        header a.cta:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: #fff;
+        }
+
+        section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        section h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a3a5c;
+            margin-bottom: 2rem;
+            letter-spacing: 0.05em;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+
+        .service {
+            padding: 1.5rem;
+            border-left: 3px solid #2a5a8c;
+        }
+
+        .service h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1a3a5c;
+        }
+
+        .service p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .about p {
+            color: #444;
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: #0a1628;
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        footer a {
+            color: #7ab0d6;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2.2rem; }
+            header p.tagline { font-size: 1rem; }
+            section { padding: 3rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>ELEVER <span>VISION</span></h1>
+    <p class="tagline">Do alto da visão, transformamos dados em valor estratégico.</p>
+    <a href="#contato" class="cta">ENTRE EM CONTATO</a>
+</header>
+
+<section class="about">
+    <h2>QUEM SOMOS</h2>
+    <p>Somos uma consultoria especializada em engenharia de dados e analytics. Transformamos complexidade em clareza, detalhe em contexto, dado em decisão.</p>
+    <p>Atuamos na construção de plataformas de dados modernas, do planejamento estratégico à operação contínua.</p>
+</section>
+
+<section>
+    <h2>SERVIÇOS</h2>
+    <div class="services">
+        <div class="service">
+            <h3>Engenharia de Dados</h3>
+            <p>Arquitetura e implementação de lakehouses, pipelines de ingestão e camadas de dados.</p>
+        </div>
+        <div class="service">
+            <h3>Analytics & BI</h3>
+            <p>Modelagem analítica, dashboards e produtos de dados para decisões estratégicas.</p>
+        </div>
+        <div class="service">
+            <h3>Governança de Dados</h3>
+            <p>Catálogos, linhagem, qualidade e políticas de acesso para dados confiáveis.</p>
+        </div>
+    </div>
+</section>
+
+<footer id="contato">
+    <p>Elever Vision Ltda. — CNPJ: 52.800.198/0001-65</p>
+    <p><a href="mailto:contato@elever.vision">contato@elever.vision</a></p>
+    <p style="margin-top: 1.5rem; font-size: 0.8rem; color: rgba(255,255,255,0.4);">&copy; 2025 Elever Vision. Todos os direitos reservados.</p>
+</footer>
+
+</body>
+</html>
