@@ -3,171 +3,689 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elever Vision — Consultoria em Dados</title>
-    <meta name="description" content="Do alto da visão, transformamos dados em valor estratégico. Consultoria especializada em engenharia de dados e analytics.">
+    <title>Elever Vision | Consultoria em Engenharia de Dados & Analytics</title>
+    <meta name="description" content="Do alto da visao, transformamos dados em valor estrategico. Consultoria especializada em engenharia de dados, analytics e governanca.">
+    <meta property="og:title" content="Elever Vision | Consultoria em Dados">
+    <meta property="og:description" content="Transformamos complexidade em clareza, detalhe em contexto, dado em decisao.">
+    <meta property="og:image" content="https://elever.vision/img/logo-square.png">
+    <meta property="og:url" content="https://elever.vision">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --blue-deep: #0a1628;
+            --blue-primary: #1565a0;
+            --blue-mid: #1a3a5c;
+            --blue-light: #2a6db5;
+            --blue-pale: #e8f1fa;
+            --white: #ffffff;
+            --gray-100: #f7f8fa;
+            --gray-300: #d1d5db;
+            --gray-500: #6b7280;
+            --gray-700: #374151;
+            --gray-900: #111827;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            color: #1a1a2e;
-            background: #fff;
+            color: var(--gray-900);
+            background: var(--white);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 2rem;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        nav .logo img {
+            height: 40px;
+            transition: height 0.3s;
+        }
+
+        nav.scrolled .logo img {
+            height: 32px;
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav .nav-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        nav .nav-links a:hover {
+            color: var(--white);
+        }
+
+        /* HERO */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url('img/hero.jpg') center/cover no-repeat;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(10, 22, 40, 0.92) 0%,
+                rgba(21, 101, 160, 0.75) 50%,
+                rgba(10, 22, 40, 0.88) 100%
+            );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--white);
+            padding: 2rem;
+            max-width: 700px;
+        }
+
+        .hero-content .logo-hero {
+            width: 90px;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 300;
+            letter-spacing: 0.18em;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-content h1 strong {
+            font-weight: 700;
+        }
+
+        .hero-content .tagline {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-content .subtitle {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,0.4);
+            color: var(--white);
+            padding: 0.9rem 3rem;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .hero-cta:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--white);
+            transform: translateY(-1px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator svg {
+            width: 24px;
+            height: 24px;
+            stroke: rgba(255,255,255,0.4);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* SECTIONS */
+        .section {
+            padding: 6rem 2rem;
+        }
+
+        .section-inner {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--blue-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .section-text {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 1.1rem;
+            color: var(--gray-500);
+            max-width: 640px;
+            line-height: 1.8;
+        }
+
+        /* ABOUT */
+        .about {
+            background: var(--white);
+        }
+
+        .about .highlight-quote {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 300;
+            color: var(--blue-mid);
+            border-left: 3px solid var(--blue-primary);
+            padding-left: 1.5rem;
+            margin-top: 2rem;
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        /* SERVICES */
+        .services-section {
+            background: var(--gray-100);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            border-top: 3px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+            border-top-color: var(--blue-primary);
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--blue-pale);
+            border-radius: 50%;
+        }
+
+        .service-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--blue-primary);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        .service-card h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card p {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.95rem;
+            color: var(--gray-500);
+            line-height: 1.7;
+        }
+
+        /* APPROACH */
+        .approach {
+            background: var(--blue-deep);
+            color: var(--white);
+        }
+
+        .approach .section-label {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .approach .section-title {
+            color: var(--white);
+        }
+
+        .approach .section-text {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .approach-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .approach-step {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            position: relative;
+        }
+
+        .approach-step::after {
+            content: '';
+            position: absolute;
+            right: -0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 40px;
+            background: rgba(255,255,255,0.15);
+        }
+
+        .approach-step:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--blue-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.03em;
+        }
+
+        .step-desc {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
             line-height: 1.6;
         }
 
-        header {
-            background: linear-gradient(135deg, #0a1628 0%, #1a3a5c 50%, #2a5a8c 100%);
-            color: #fff;
-            min-height: 100vh;
+        /* TECH */
+        .tech-section {
+            background: var(--white);
+        }
+
+        .tech-logos {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            margin-top: 2.5rem;
             align-items: center;
-            text-align: center;
-            padding: 2rem;
         }
 
-        header h1 {
-            font-size: 3.5rem;
-            font-weight: 300;
-            letter-spacing: 0.15em;
-            margin-bottom: 1rem;
-        }
-
-        header h1 span {
-            font-weight: 600;
-        }
-
-        header p.tagline {
-            font-size: 1.15rem;
-            color: rgba(255,255,255,0.8);
-            max-width: 500px;
-            margin-bottom: 3rem;
-        }
-
-        header a.cta {
-            border: 1px solid rgba(255,255,255,0.5);
-            color: #fff;
-            padding: 0.8rem 2.5rem;
-            text-decoration: none;
-            font-size: 0.95rem;
+        .tech-item {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--gray-500);
             letter-spacing: 0.05em;
+            padding: 0.6rem 1.2rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 2px;
             transition: all 0.3s;
         }
 
-        header a.cta:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: #fff;
+        .tech-item:hover {
+            border-color: var(--blue-primary);
+            color: var(--blue-primary);
         }
 
-        section {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 5rem 2rem;
+        /* CONTACT */
+        .contact {
+            background: var(--gray-100);
+            text-align: center;
         }
 
-        section h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #1a3a5c;
-            margin-bottom: 2rem;
-            letter-spacing: 0.05em;
+        .contact .section-label,
+        .contact .section-title {
+            text-align: center;
         }
 
-        .services {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 2rem;
+        .contact .section-text {
+            margin: 0 auto 2.5rem;
+            text-align: center;
         }
 
-        .service {
-            padding: 1.5rem;
-            border-left: 3px solid #2a5a8c;
+        .contact-email {
+            display: inline-block;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--blue-primary);
+            text-decoration: none;
+            padding: 1rem 3rem;
+            border: 2px solid var(--blue-primary);
+            transition: all 0.3s;
+            letter-spacing: 0.02em;
         }
 
-        .service h3 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #1a3a5c;
+        .contact-email:hover {
+            background: var(--blue-primary);
+            color: var(--white);
         }
 
-        .service p {
+        .contact-linkedin {
+            display: block;
+            margin-top: 1.5rem;
             font-size: 0.9rem;
-            color: #555;
+            color: var(--gray-500);
+            text-decoration: none;
+            transition: color 0.3s;
         }
 
-        .about p {
-            color: #444;
-            font-size: 1.05rem;
+        .contact-linkedin:hover {
+            color: var(--blue-primary);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--blue-deep);
+            color: rgba(255,255,255,0.4);
+            text-align: center;
+            padding: 2.5rem 2rem;
+            font-size: 0.8rem;
+        }
+
+        footer .footer-logo {
+            height: 28px;
+            opacity: 0.3;
             margin-bottom: 1rem;
         }
 
-        footer {
-            background: #0a1628;
-            color: rgba(255,255,255,0.7);
-            text-align: center;
-            padding: 3rem 2rem;
-        }
-
-        footer a {
-            color: #7ab0d6;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            color: #fff;
-        }
-
         footer p {
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
         }
 
-        @media (max-width: 600px) {
-            header h1 { font-size: 2.2rem; }
-            header p.tagline { font-size: 1rem; }
-            section { padding: 3rem 1.5rem; }
+        /* MOBILE */
+        @media (max-width: 768px) {
+            nav .nav-links { display: none; }
+
+            .hero-content h1 { font-size: 2.2rem; letter-spacing: 0.1em; }
+            .hero-content .tagline { font-size: 1rem; }
+
+            .section { padding: 4rem 1.5rem; }
+            .section-title { font-size: 1.6rem; }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .approach-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .approach-step::after { display: none; }
+
+            .tech-logos { gap: 1rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 { font-size: 1.8rem; }
+            .approach-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ANIMATIONS */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>ELEVER <span>VISION</span></h1>
-    <p class="tagline">Do alto da visão, transformamos dados em valor estratégico.</p>
-    <a href="#contato" class="cta">ENTRE EM CONTATO</a>
-</header>
+<!-- NAV -->
+<nav id="navbar">
+    <a href="#" class="logo">
+        <img src="img/logo.png" alt="Elever Vision">
+    </a>
+    <ul class="nav-links">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#servicos">Servicos</a></li>
+        <li><a href="#abordagem">Abordagem</a></li>
+        <li><a href="#contato">Contato</a></li>
+    </ul>
+</nav>
 
-<section class="about">
-    <h2>QUEM SOMOS</h2>
-    <p>Somos uma consultoria especializada em engenharia de dados e analytics. Transformamos complexidade em clareza, detalhe em contexto, dado em decisão.</p>
-    <p>Atuamos na construção de plataformas de dados modernas, do planejamento estratégico à operação contínua.</p>
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+        <img src="img/logo-square.png" alt="" class="logo-hero">
+        <h1>ELEVER <strong>VISION</strong></h1>
+        <p class="tagline">Do alto da visao, transformamos dados em valor estrategico.</p>
+        <p class="subtitle">Consultoria em Engenharia de Dados & Analytics</p>
+        <a href="#contato" class="hero-cta">Fale Conosco</a>
+    </div>
+    <div class="scroll-indicator">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+        </svg>
+    </div>
 </section>
 
-<section>
-    <h2>SERVIÇOS</h2>
-    <div class="services">
-        <div class="service">
-            <h3>Engenharia de Dados</h3>
-            <p>Arquitetura e implementação de lakehouses, pipelines de ingestão e camadas de dados.</p>
-        </div>
-        <div class="service">
-            <h3>Analytics & BI</h3>
-            <p>Modelagem analítica, dashboards e produtos de dados para decisões estratégicas.</p>
-        </div>
-        <div class="service">
-            <h3>Governança de Dados</h3>
-            <p>Catálogos, linhagem, qualidade e políticas de acesso para dados confiáveis.</p>
+<!-- SOBRE -->
+<section class="section about" id="sobre">
+    <div class="section-inner fade-in">
+        <p class="section-label">Quem Somos</p>
+        <h2 class="section-title">A visao clara que nasce<br>do trabalho consistente.</h2>
+        <p class="section-text">
+            Somos uma consultoria especializada em engenharia de dados e analytics. Atuamos na construcao de plataformas de dados modernas, do planejamento estrategico a operacao continua.
+        </p>
+        <p class="section-text" style="margin-top: 1rem;">
+            Nosso trabalho une execucao tecnica rigorosa com visao de negocio. Cada projeto e uma jornada: da complexidade dos dados brutos ate a clareza que sustenta decisoes conscientes.
+        </p>
+        <p class="highlight-quote">
+            "Subimos a montanha da complexidade tecnologica para oferecer visao clara, estrategica e sustentavel."
+        </p>
+    </div>
+</section>
+
+<!-- SERVICOS -->
+<section class="section services-section" id="servicos">
+    <div class="section-inner fade-in">
+        <p class="section-label">Servicos</p>
+        <h2 class="section-title">Estrutura que sustenta decisoes.</h2>
+        <p class="section-text">Cada entrega conecta engenharia tecnica a resultados estrategicos.</p>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h8"/><circle cx="20" cy="18" r="2"/></svg>
+                </div>
+                <h3>Engenharia de Dados</h3>
+                <p>Arquitetura e implementacao de lakehouses, pipelines de ingestao e camadas de dados. Estruturas solidas que escalam com o negocio.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 16l4-6 4 4 5-8"/></svg>
+                </div>
+                <h3>Analytics & BI</h3>
+                <p>Modelagem analitica, dashboards e produtos de dados. Transformamos informacao em visao estrategica para tomada de decisao.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                </div>
+                <h3>Governanca de Dados</h3>
+                <p>Catalogos, linhagem, qualidade e politicas de acesso. A fundacao invisivel que garante dados confiaveis.</p>
+            </div>
         </div>
     </div>
 </section>
 
-<footer id="contato">
-    <p>Elever Vision Ltda. — CNPJ: 52.800.198/0001-65</p>
-    <p><a href="mailto:contato@elever.vision">contato@elever.vision</a></p>
-    <p style="margin-top: 1.5rem; font-size: 0.8rem; color: rgba(255,255,255,0.4);">&copy; 2025 Elever Vision. Todos os direitos reservados.</p>
+<!-- ABORDAGEM -->
+<section class="section approach" id="abordagem">
+    <div class="section-inner fade-in">
+        <p class="section-label">Abordagem</p>
+        <h2 class="section-title">Metodologia estruturada.<br>Resultados sustentaveis.</h2>
+        <p class="section-text">Aplicamos o LIM (Lakehouse Implementation Methodology), framework proprietario que organiza cada projeto em entregas claras e rastreaveis.</p>
+
+        <div class="approach-grid">
+            <div class="approach-step">
+                <div class="step-number">01</div>
+                <div class="step-title">Estrategia</div>
+                <div class="step-desc">Diagnostico, mapeamento de fontes e definicao da arquitetura alvo.</div>
+            </div>
+            <div class="approach-step">
+                <div class="step-number">02</div>
+                <div class="step-title">Fundacao</div>
+                <div class="step-desc">Infraestrutura, plataforma de ingestao e camada Bronze.</div>
+            </div>
+            <div class="approach-step">
+                <div class="step-number">03</div>
+                <div class="step-title">Construcao</div>
+                <div class="step-desc">Camadas Silver e Gold, modelos analiticos e produtos de dados.</div>
+            </div>
+            <div class="approach-step">
+                <div class="step-number">04</div>
+                <div class="step-title">Operacao</div>
+                <div class="step-desc">Governanca, monitoramento e evolucao continua da plataforma.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TECH -->
+<section class="section tech-section">
+    <div class="section-inner fade-in">
+        <p class="section-label">Stack</p>
+        <h2 class="section-title">Tecnologias que dominamos.</h2>
+        <div class="tech-logos">
+            <span class="tech-item">Databricks</span>
+            <span class="tech-item">Microsoft Fabric</span>
+            <span class="tech-item">Azure Data Lake</span>
+            <span class="tech-item">Delta Lake</span>
+            <span class="tech-item">Unity Catalog</span>
+            <span class="tech-item">Apache Spark</span>
+            <span class="tech-item">Power BI</span>
+            <span class="tech-item">dbt</span>
+            <span class="tech-item">Python</span>
+            <span class="tech-item">Azure Functions</span>
+        </div>
+    </div>
+</section>
+
+<!-- CONTATO -->
+<section class="section contact" id="contato">
+    <div class="section-inner fade-in">
+        <p class="section-label">Contato</p>
+        <h2 class="section-title">Vamos conversar.</h2>
+        <p class="section-text">Cada projeto comeca com uma conversa. Conte-nos seu desafio e construiremos juntos o caminho.</p>
+        <a href="mailto:contato@elever.vision" class="contact-email">contato@elever.vision</a>
+        <a href="https://www.linkedin.com/company/elever-vision/" target="_blank" rel="noopener" class="contact-linkedin">LinkedIn &rarr;</a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <img src="img/logo.png" alt="Elever Vision" class="footer-logo">
+    <p>Elever Vision Ltda. &middot; CNPJ 52.800.198/0001-65</p>
+    <p>&copy; 2025 Elever Vision. Todos os direitos reservados.</p>
 </footer>
+
+<script>
+// Navbar scroll effect
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Fade-in on scroll
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
