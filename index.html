@@ -10,7 +10,9 @@
     <meta property="og:image" content="https://elever.vision/img/logo-square.png">
     <meta property="og:url" content="https://elever.vision">
     <meta property="og:type" content="website">
-    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="img/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
@@ -453,6 +455,65 @@
             color: var(--blue-primary);
         }
 
+        .contact-form {
+            max-width: 480px;
+            margin: 3rem auto 0;
+            text-align: left;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 2px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: var(--gray-900);
+            background: var(--white);
+            transition: border-color 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--blue-primary);
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 0.9rem;
+            background: var(--blue-primary);
+            color: var(--white);
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.3s;
+            border-radius: 2px;
+        }
+
+        .contact-form button:hover {
+            background: var(--blue-mid);
+        }
+
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            color: var(--blue-primary);
+            font-weight: 500;
+        }
+
         /* FOOTER */
         footer {
             background: var(--blue-deep);
@@ -658,6 +719,14 @@
         <p class="section-text">Cada projeto começa com uma conversa. Conte-nos seu desafio e construiremos juntos o caminho.</p>
         <a href="mailto:contato@elever.vision" class="contact-email">contato@elever.vision</a>
         <a href="https://www.linkedin.com/company/elevervision" target="_blank" rel="noopener" class="contact-linkedin">LinkedIn &rarr;</a>
+
+        <form class="contact-form" id="contact-form" action="https://formspree.io/f/contato@elever.vision" method="POST">
+            <input type="text" name="name" placeholder="Nome" required>
+            <input type="email" name="email" placeholder="E-mail" required>
+            <textarea name="message" placeholder="Como podemos ajudar?" required></textarea>
+            <button type="submit">Enviar mensagem</button>
+        </form>
+        <div class="form-success" id="form-success">Mensagem enviada. Entraremos em contato em breve.</div>
     </div>
 </section>
 
@@ -665,7 +734,7 @@
 <footer>
     <img src="img/logo.png" alt="Elever Vision" class="footer-logo">
     <p>Elever Vision Tecnologia Ltda. &middot; CNPJ 53.830.331/0001-15</p>
-    <p>&copy; 2025 Elever Vision. Todos os direitos reservados.</p>
+    <p>&copy; 2026 Elever Vision. Todos os direitos reservados.</p>
 </footer>
 
 <script>
@@ -685,6 +754,20 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Contact form
+const form = document.getElementById('contact-form');
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    try {
+        await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+        form.style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+    } catch (err) {
+        window.location.href = 'mailto:contato@elever.vision';
+    }
+});
 </script>
 
 </body>
